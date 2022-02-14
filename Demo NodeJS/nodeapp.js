@@ -22,12 +22,30 @@ const server = http.createServer(function(request, response)
     response.end('Welcome to MCA'); */
     response.writeHead(200,{'Content-Type' : 'text/html' })
     //response.end('<h1 style = "color : red">Welcome to Christ MCA</h1>');
-    fs.readFile(path.join(__dirname,'index.html'),'utf-8', (err,data)=>
-    {
-        if(err) throw err;
-        response.end(data);
-    });
 
+    var url = request.url;
+    //console.log(url);
+    if(url=='/'){
+        fs.readFile(path.join(__dirname,'index.html'),'utf-8', (err,data)=>
+        {
+            if(err) throw err;
+            response.end(data);
+        });
+    }
+    else if(url=='/about'){
+        fs.readFile(path.join(__dirname,'about.html'),'utf-8', (err,data)=>
+        {
+            if(err) throw err;
+            response.end(data);
+        });
+    }
+    else if(url=='/contact'){
+        fs.readFile(path.join(__dirname,'contact.html'),'utf-8', (err,data)=>
+        {
+            if(err) throw err;
+            response.end(data);
+        });
+    }
 });
 
 //Listener
